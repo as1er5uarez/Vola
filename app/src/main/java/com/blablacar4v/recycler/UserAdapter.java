@@ -1,5 +1,7 @@
 package com.blablacar4v.recycler;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.blablacar4v.Program;
 import com.blablacar4v.R;
+import com.blablacar4v.RideActivity;
 import com.blablacar4v.models.Travel;
 import com.blablacar4v.models.User;
 
@@ -58,6 +61,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.RecyclerDataHo
         public TextView textDepartureHour;
         public TextView textSeats;
         public Button button;
+        public TextView textArrivalPlace;
 
         public RecyclerDataHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,17 +72,37 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.RecyclerDataHo
             textDepartureHour = itemView.findViewById(R.id.textHourDeparture);
             textSeats = itemView.findViewById(R.id.textSeats);
             button = itemView.findViewById(R.id.buttonEntry);
+            textArrivalPlace = itemView.findViewById(R.id.textArrivalPlace);
         }
 
         public void assignData(Travel travel, OnItemClickListener onItemClick) {
-            User user = Program.management.getUser(travel.getUserPublicated());
-            textName.setText(user.getName());
+            Log.d("Tag", travel.getUserPublicated());
+            String photo = "";
+
+            Program.management.getUser(travel.getUserPublicated()).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    List<User> user = task.getResult();
+                    textName.setText(user.get(0).getName());
+                }
+            });
             textDeparturePlace.setText(travel.getDeparturePlace());
-            textDepartureDate.setText((CharSequence) travel.getDepartureDate());
+            textDepartureDate.setText(travel.getDepartureDate());
             textDepartureHour.setText(travel.getDepartureHour());
             textSeats.setText(travel.getSeats() + " asientos");
-            itemView.setOnClickListener(v -> onItemClick.onItemClick(travel));
-            button.setOnClickListener(v -> onItemClick.onItemClick(travel));
+            textArrivalPlace.setText(travel.getArrivalPlace());
+            imageView.setImageResource(R.drawable.user);
+            itemView.setOnClickListener(v -> {
+                        Context context = itemView.getContext();
+                        Intent intent = new Intent(context, RideActivity.class);
+                        intent.putExtra("travel", travel);
+                        context.startActivity(intent);
+                    });
+            button.setOnClickListener(v -> {
+                Context context = itemView.getContext();
+                Intent intent = new Intent(context, RideActivity.class);
+                intent.putExtra("travel", travel);
+                context.startActivity(intent);
+            });
         }
     }
 

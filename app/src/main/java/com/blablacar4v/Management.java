@@ -4,64 +4,96 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.blablacar4v.models.Travel;
 import com.blablacar4v.models.User;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Management {
     public FirebaseFirestore db;
-    List<User> users = new ArrayList<>();
-    List<Travel> travels = new ArrayList<>();
+    ArrayList<User> users = new ArrayList<>();
+    ArrayList<Travel> travels = new ArrayList<>();
+    User user = new User();
 
     public Management(){
         db = FirebaseFirestore.getInstance();
     }
 
-    public User getUser(String email){
-        return db.collection("users").document(email).get().getResult().toObject(User.class);
-    }
-
-    public List<Travel> getTravels(){
-        db.collection("travels")
+    /*public Task<User> getUser(String email){
+        TaskCompletionSource<User> source = new TaskCompletionSource<>();
+        db.collection("users")
+                .document(email)
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                travels.add(document.toObject(Travel.class));
-                            }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if(document.exists()){
+                            user = document.toObject(User.class);
+                            source.setResult(user);
                         } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
+                            Log.d(TAG, "No such document");
                         }
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+
+                });
+        return source.getTask();
+    }*/
+
+    public Task<List<User>> getUser(String email){
+        TaskCompletionSource<List<User>> source = new TaskCompletionSource<>();
+        db.collection("users")
+                .whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            this.users.add(document.toObject(User.class));
+                            Log.d(TAG, users.size() + " users");
+                        }
+                        source.setResult(users);
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
                     }
                 });
-        return travels;
+        return source.getTask();
+    }
+
+
+    public Task<List<Travel>> getTravels(){
+        TaskCompletionSource<List<Travel>> source = new TaskCompletionSource<>();
+        db.collection("travels")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            this.travels.add(document.toObject(Travel.class));
+                            Log.d(TAG, travels.size() + " travels");
+                        }
+                        source.setResult(travels);
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
+        return source.getTask();
     }
 
     public List<User> getUsers(){
-
                 db.collection("users")
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                users.add(document.toObject(User.class));
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            users.add(document.toObject(User.class));
                         }
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
                     }
                 });
         return users;

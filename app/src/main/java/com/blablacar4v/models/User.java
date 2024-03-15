@@ -25,6 +25,14 @@ public class User {
         this.photo = photo;
     }
 
+    public User(String direction, String email, String name, String  phone, String photo)  {
+        this.email = email;
+        this.direction = direction;
+        this.phone = phone;
+        this.name = name;
+        this.photo = photo;
+    }
+
     public String getEmail() {
         return email;
     }

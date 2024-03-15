@@ -2,6 +2,7 @@ package com.blablacar4v;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,53 +25,73 @@ public class MainActivity extends AppCompatActivity {
     Bundle bundle;
     TextView tx;
     Button logoutButton;
-    TabLayout addRide;
     RecyclerView recyclerView;
     UserAdapter adapter;
     List<User> users;
     List<Travel> travels;
+    TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         bundle = getIntent().getExtras();
         tx = findViewById(R.id.textView5);
         logoutButton = findViewById(R.id.logoutButton);
-        addRide = findViewById(R.id.tabLayout);
         String email = bundle.getString("email");
         String provider = bundle.getString("provider");
         recyclerView = findViewById(R.id.recyclerView);
         users = Program.management.getUsers();
-        travels = Program.management.getTravels();
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-        adapter = new UserAdapter(travels, travel -> {
-            Intent intent = new Intent(MainActivity.this, RideActivity.class);
-            intent.putExtra("travel", (CharSequence) travel);
-            startActivity(intent);
+        Program.management.getTravels().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                travels = task.getResult();
+                adapter = new UserAdapter(travels, travel -> {
+                    Intent intent = new Intent(MainActivity.this, RideActivity.class);
+                    intent.putExtra("travel", (CharSequence) travel);
+                    startActivity(intent);
+                });
+                recyclerView.setAdapter(adapter);
+            } else {
+                Log.d("TAG", "Error getting documents: ", task.getException());
+            }
         });
-        recyclerView.setAdapter(adapter);
-
-        setUp(email, ProviderType.valueOf(provider));
-        addRide.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        Log.d("TAG", "Hola");
+        tabLayout = findViewById(R.id.tabLayout);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                if (tab.getPosition() == 0){
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));
-                }else if (tab.getPosition() == 1){
-                    Intent intent = new Intent(MainActivity.this, SetUpRideActivity.class);
-                    intent.putExtra("email", email);
-                    startActivity(intent);
-                }/*else if (tab.getPosition() == 2){
-                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-                }*/
+                switch (tab.getPosition()) {
+                    case 0:
+                        //Poner el recyclerview desde el inicio
+                        recyclerView.smoothScrollToPosition(0);
+                        break;
+                    case 1:
+                        Intent intent = new Intent(MainActivity.this, SetUpRideActivity.class);
+                        intent.putExtra("email", email);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
             }
+
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
             }
+
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+
+
+        setUp(email, ProviderType.valueOf(provider));
+        onResume();
+
     }
     private void setUp(String email, ProviderType provider){
         tx.setText(email);
@@ -78,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             onBackPressed();
                 });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Restablecer la selección del tab
+        tabLayout.getTabAt(0).select(); // Cambia 0 por el índice del tab que quieras seleccionar por defecto
     }
 
 

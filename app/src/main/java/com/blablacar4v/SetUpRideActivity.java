@@ -1,6 +1,7 @@
 package com.blablacar4v;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ public class SetUpRideActivity extends AppCompatActivity {
     EditText editDeperaturePlace;
     EditText editArrivalPlace;
     EditText editSeats;
+    EditText editDepartureDate;
 
     private FirebaseFirestore db;
     Button setUpButton;
@@ -27,36 +29,27 @@ public class SetUpRideActivity extends AppCompatActivity {
     String email;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_up_ride);
         homeButton = findViewById(R.id.floatingHome);
-        editArrivalTime = findViewById(R.id.editArrivalTime);
-        editDepartureTime = findViewById(R.id.editDepartureTime);
         setUpButton = findViewById(R.id.buttonAdd);
-        editDate = findViewById(R.id.editDate);
         editDeperaturePlace = findViewById(R.id.editDeparturePlace);
         editArrivalPlace = findViewById(R.id.editArrivalPlace);
-        editSeats = findViewById(R.id.editSeats);
         bundle = getIntent().getExtras();
         email = bundle.getString("email");
         db = FirebaseFirestore.getInstance();
-        editArrivalTime.setOnClickListener(v -> {
-            timePickerDialog = new TimePickerDialog(SetUpRideActivity.this, (view, hourOfDay, minute) -> {
-                editArrivalTime.setText(hourOfDay + ":" + minute);
-            }, 0, 0, true);
-            timePickerDialog.show();
-        });
-        editDepartureTime.setOnClickListener(v -> {
-            timePickerDialog = new TimePickerDialog(SetUpRideActivity.this, (view, hourOfDay, minute) -> {
-                editDepartureTime.setText(hourOfDay + ":" + minute);
-            }, 0, 0, true);
-            timePickerDialog.show();
+        editSeats = findViewById(R.id.editSeats);
+        editDeperaturePlace.setOnClickListener(v -> {
+            Intent intent = new Intent(SetUpRideActivity.this, MapActivity.class);
+            intent.putExtra("type", "departure");
+            startActivity(intent);
         });
 
 
-        homeButton.setOnClickListener(v -> onBackPressed());
+        homeButton.setOnClickListener(v -> finish());
         setUp();
     }
 

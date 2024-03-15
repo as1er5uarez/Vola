@@ -27,6 +27,7 @@
         android:fontFamily="monospace"
         android:text="Prepara tu viaje"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#151F6D"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,60 +39,27 @@
     <EditText
         android:id="@+id/editDeparturePlace"
         android:layout_width="379dp"
-        android:layout_height="65dp"
+        android:layout_height="42dp"
         android:background="@android:drawable/dialog_holo_light_frame"
-        android:backgroundTint="#DADADA"
+        android:backgroundTint="#F3F3F3"
+        android:clickable="true"
+        android:editable="false"
         android:ems="10"
         android:hint="Lugar de salida"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.718"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211" />
-
-    <Button
-        android:id="@+id/buttonCurrentLocation"
-        android:layout_width="379dp"
-        android:layout_height="41dp"
-        android:backgroundTint="#E6E6E6"
-        android:text="Usar mi ubicación actual"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.335"
-        app:rippleColor="#000000" />
-
-    <EditText
-        android:id="@+id/editDate"
-        android:layout_width="380dp"
-        android:layout_height="63dp"
-        android:background="@android:drawable/dialog_holo_light_frame"
-        android:backgroundTint="#DADADA"
-        android:ems="10"
-        android:hint="Fecha"
-        android:inputType="text"
-        android:lineSpacingExtra="10sp"
-        android:textAlignment="viewStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.709"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66" />
+        app:layout_constraintVertical_bias="0.261" />
 
     <EditText
         android:id="@+id/editSeats"
         android:layout_width="380dp"
-        android:layout_height="63dp"
+        android:layout_height="42dp"
         android:background="@android:drawable/dialog_holo_light_frame"
-        android:backgroundTint="#DADADA"
+        android:backgroundTint="#F3F3F3"
         android:ems="10"
         android:hint="Nº de asientos disponibles"
         android:inputType="number"
@@ -99,68 +67,33 @@
         android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.709"
+        app:layout_constraintHorizontal_bias="0.741"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
-
-    <EditText
-        android:id="@+id/editDepartureTime"
-        android:layout_width="177dp"
-        android:layout_height="60dp"
-        android:background="@android:drawable/dialog_holo_light_frame"
-        android:backgroundTint="#DADADA"
-        android:ems="10"
-        android:hint="Hora de salida"
-        android:inputType="number"
-        android:lineSpacingExtra="10sp"
-        android:textAlignment="viewStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.886" />
-
-    <EditText
-        android:id="@+id/editArrivalTime"
-        android:layout_width="177dp"
-        android:layout_height="60dp"
-        android:background="@android:drawable/dialog_holo_light_frame"
-        android:backgroundTint="#DADADA"
-        android:ems="10"
-        android:hint="Hora de llegada"
-        android:inputType="number"
-        android:lineSpacingExtra="10sp"
-        android:textAlignment="viewStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.961"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.886" />
+        app:layout_constraintVertical_bias="0.602" />
 
     <EditText
         android:id="@+id/editArrivalPlace"
         android:layout_width="380dp"
-        android:layout_height="63dp"
+        android:layout_height="42dp"
         android:background="@android:drawable/dialog_holo_light_frame"
-        android:backgroundTint="#DADADA"
+        android:backgroundTint="#F3F3F3"
+        android:editable="false"
         android:ems="10"
         android:hint="Lugar de llegada"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447" />
+        app:layout_constraintVertical_bias="0.377" />
 
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="365dp"
         android:layout_height="50dp"
-        android:backgroundTint="#0785EA"
+        android:backgroundTint="#151F6D"
         android:text="Añadir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -168,30 +101,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="350dp"
-        android:layout_height="319dp"
-        android:background="@android:drawable/editbox_background"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
-        android:id="@+id/buttonDontKnowAddress"
-        android:layout_width="368dp"
-        android:layout_height="43dp"
-        android:backgroundTint="#E6E6E6"
-        android:text="No se la dirección"
-        android:textColor="#070707"
-        android:textStyle="bold"
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:text="Fecha de salida"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553" />
+        app:layout_constraintVertical_bias="0.493" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:text="Hora de salida"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.493" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

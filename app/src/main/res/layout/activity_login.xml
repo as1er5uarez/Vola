@@ -10,39 +10,20 @@
       android:id="@+id/emailEditText"
       android:layout_width="367dp"
       android:layout_height="42dp"
-      android:layout_marginTop="288dp"
       android:background="@android:drawable/editbox_background"
-      android:backgroundTint="#DADADA"
+      android:backgroundTint="#F3F3F3"
       android:ems="10"
       android:fontFamily="monospace"
       android:hint="email"
       android:inputType="textEmailAddress"
       android:textStyle="italic"
-      app:layout_constraintBottom_toTopOf="@+id/editTextText6"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.537"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.896"
-      tools:text="asier@doqa.com"
-      />
-
-  <EditText
-      android:id="@+id/passwordEditText"
-      android:layout_width="362dp"
-      android:layout_height="44dp"
-      android:background="@android:drawable/editbox_background"
-      android:backgroundTint="#DADADA"
-      android:ems="10"
-      android:fontFamily="monospace"
-      android:hint="password"
-      android:inputType="textPassword"
-      android:textStyle="italic"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.431"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      tools:text="doqa123" />
+      app:layout_constraintVertical_bias="0.248"
+      tools:text="asier@doqa.com" />
 
   <TextView
       android:id="@+id/textView6"
@@ -50,56 +31,78 @@
       android:layout_height="wrap_content"
       android:fontFamily="monospace"
       android:text="¡Bienvenido!"
+      android:textColor="#000000"
       android:textSize="34sp"
       android:textStyle="bold"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.479"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.218" />
+      app:layout_constraintVertical_bias="0.153" />
 
   <Button
       android:id="@+id/loginInButton"
       android:layout_width="346dp"
       android:layout_height="43dp"
       android:layout_marginTop="60dp"
-      android:layout_marginBottom="280dp"
-      android:backgroundTint="#0785EA"
+      android:layout_marginBottom="352dp"
+      android:backgroundTint="#151F6D"
       android:backgroundTintMode="add"
       android:text="Acceder"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.446"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/editTextText6"
       app:layout_constraintVertical_bias="0.0" />
-
-  <TextView
-      android:id="@+id/textView7"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:fontFamily="monospace"
-      android:text="RideConnect"
-      android:textSize="20sp"
-      android:textStyle="bold"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.501"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.096" />
 
   <TextView
       android:id="@+id/textView8"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="12dp"
-      android:layout_marginBottom="332dp"
+      android:layout_marginBottom="404dp"
       android:text="Olvide mi contraseña"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.168"
+      app:layout_constraintHorizontal_bias="0.157"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
+
+  <EditText
+      android:id="@+id/passwordEditText"
+      android:layout_width="362dp"
+      android:layout_height="44dp"
+      android:background="@android:drawable/editbox_background"
+      android:backgroundTint="#F3F3F3"
+      android:ems="10"
+      android:fontFamily="monospace"
+      android:hint="password"
+      android:inputType="textPassword"
+      android:textStyle="italic"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.428"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.363"
+      tools:text="doqa123" />
+
+  <TextView
+      android:id="@+id/textView7"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="monospace"
+      android:text="Vola"
+      android:textColor="#151F6D"
+      android:textSize="34sp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.058" />
 
   <TextView
       android:id="@+id/textViewSignUp"
@@ -107,12 +110,13 @@
       android:layout_height="wrap_content"
       android:fontFamily="monospace"
       android:text="¿Nuevo usuario? Registrate"
+      android:textColor="#151F6D"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.501"
+      app:layout_constraintHorizontal_bias="0.497"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/loginInButton"
-      app:layout_constraintVertical_bias="0.13" />
+      app:layout_constraintVertical_bias="0.195" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,8 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
-        android:text="Contacta conductor"
-        android:textColor="#818181"
+        android:text="Contactar conductor"
+        android:textColor="#525783"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.812" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingHome2"
+        android:id="@+id/floatingHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -39,7 +39,7 @@
         app:srcCompat="?attr/homeAsUpIndicator" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/perfilView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,6 +56,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
         android:text="Detalles del viaje"
+        android:textColor="#151F6D"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,6 +76,7 @@
         android:text="📅 Lunes, 8 Dec."
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#151F6D"
         android:textSize="20sp"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +87,7 @@
         app:layout_constraintVertical_bias="0.376" />
 
     <TextView
-        android:id="@+id/textDepartureDate2"
+        android:id="@+id/textDepartureHour"
         android:layout_width="177dp"
         android:layout_height="70dp"
         android:background="@android:drawable/editbox_background"
@@ -95,6 +97,7 @@
         android:text="🕒 3:45"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#151F6D"
         android:textSize="20sp"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,7 +108,7 @@
         app:layout_constraintVertical_bias="0.376" />
 
     <TextView
-        android:id="@+id/textDepartureDate5"
+        android:id="@+id/textArrivalPlace"
         android:layout_width="177dp"
         android:layout_height="70dp"
         android:background="@android:drawable/editbox_background"
@@ -115,6 +118,7 @@
         android:text="📍 Morea"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#151F6D"
         android:textSize="20sp"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -125,7 +129,7 @@
         app:layout_constraintVertical_bias="0.532" />
 
     <TextView
-        android:id="@+id/textDepartureDate4"
+        android:id="@+id/textDeparturePlace"
         android:layout_width="177dp"
         android:layout_height="72dp"
         android:background="@android:drawable/editbox_background"
@@ -135,6 +139,7 @@
         android:text="🏠 Sarriguren"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#151F6D"
         android:textSize="20sp"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -150,6 +155,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
         android:text="Descripción"
+        android:textColor="#151F6D"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -160,12 +166,12 @@
         app:layout_constraintVertical_bias="0.661" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
         android:text="Descriocion del viaje predeterminado"
-        android:textColor="#818181"
+        android:textColor="#525783"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -192,12 +198,13 @@
         android:id="@+id/button"
         android:layout_width="357dp"
         android:layout_height="50dp"
-        android:backgroundTint="#0785EA"
-        android:text="Añadirse al viaje"
+        android:backgroundTint="#151F6D"
+        android:text="Unirse al viaje"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.96" />
+        app:layout_constraintVertical_bias="0.961" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

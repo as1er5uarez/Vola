@@ -1,8 +1,13 @@
 package com.blablacar4v.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
-public class Travel {
+public class Travel implements Parcelable {
 
     private String departureHour;
     private String arrivalHour;
@@ -17,7 +22,17 @@ public class Travel {
     public Travel() {
     }
 
+    public static final Creator<Travel> CREATOR = new Creator<Travel>() {
+        @Override
+        public Travel createFromParcel(Parcel in) {
+            return new Travel(in);
+        }
 
+        @Override
+        public Travel[] newArray(int size) {
+            return new Travel[size];
+        }
+    };
 
     public Travel(String arrivalHour, String arrivalPlace, String departureDate, String departureHour, String departurePlace, String description,  int seats, String userPublicated) {
         this.arrivalHour = arrivalHour;
@@ -28,6 +43,17 @@ public class Travel {
         this.description = description;
         this.userPublicated = userPublicated;
         this.seats = seats;
+    }
+
+    public Travel(Parcel in) {
+        departureHour = in.readString();
+        arrivalHour = in.readString();
+        departureDate = in.readString();
+        departurePlace = in.readString();
+        arrivalPlace = in.readString();
+        description = in.readString();
+        userPublicated = in.readString();
+        seats = in.readInt();
     }
 
     public void addUserInterested(User user){
@@ -101,5 +127,24 @@ public class Travel {
 
     public void setSeats(int seats) {
         this.seats = seats;
+    }
+
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(departureHour);
+        dest.writeString(arrivalHour);
+        dest.writeString(departureDate);
+        dest.writeString(departurePlace);
+        dest.writeString(arrivalPlace);
+        dest.writeString(description);
+        dest.writeString(userPublicated);
+        dest.writeInt(seats);
     }
 }
