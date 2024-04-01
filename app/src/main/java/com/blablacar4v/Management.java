@@ -53,8 +53,12 @@ public class Management {
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        this.users.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            this.users.add(document.toObject(User.class));
+                            if (document.toObject(User.class).getEmail().equals(email)) {
+                                this.users.add(document.toObject(User.class));
+                                Log.d(TAG, users.get(0).getName()+ " users");
+                            }
                             Log.d(TAG, users.size() + " users");
                         }
                         source.setResult(users);
@@ -72,6 +76,7 @@ public class Management {
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        this.travels.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             this.travels.add(document.toObject(Travel.class));
                             Log.d(TAG, travels.size() + " travels");
@@ -97,5 +102,20 @@ public class Management {
                     }
                 });
         return users;
+    }
+
+    public int getMaxId(){
+        final int[] max = {-1};
+        getTravels().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Travel> travels = task.getResult();
+                for (Travel travel : travels) {
+                    if (travel.getId() >= max[0]) {
+                        max[0] = travel.getId();
+                    }
+                }
+            }
+        });
+        return max[0];
     }
 }

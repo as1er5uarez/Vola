@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 adapter = new UserAdapter(travels, travel -> {
                     Intent intent = new Intent(MainActivity.this, RideActivity.class);
                     intent.putExtra("travel", (CharSequence) travel);
+                    intent.putExtra("email", email);
                     startActivity(intent);
                 });
                 recyclerView.setAdapter(adapter);

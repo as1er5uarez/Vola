@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 
 public class Travel implements Parcelable {
+    private int id;
 
     private String departureHour;
     private String arrivalHour;
@@ -34,15 +35,17 @@ public class Travel implements Parcelable {
         }
     };
 
-    public Travel(String arrivalHour, String arrivalPlace, String departureDate, String departureHour, String departurePlace, String description,  int seats, String userPublicated) {
+    public Travel(String arrivalHour, String arrivalPlace, String departureDate, String departureHour, String departurePlace, String description,  int seats, String userPublicated, int id) {
         this.arrivalHour = arrivalHour;
         this.arrivalPlace = arrivalPlace;
         this.departureDate = departureDate;
         this.departureHour = departureHour;
         this.departurePlace = departurePlace;
         this.description = description;
+        this.id = id;
         this.userPublicated = userPublicated;
         this.seats = seats;
+
     }
 
     public Travel(Parcel in) {
@@ -54,6 +57,7 @@ public class Travel implements Parcelable {
         description = in.readString();
         userPublicated = in.readString();
         seats = in.readInt();
+        id  = in.readInt();
     }
 
     public void addUserInterested(User user){
@@ -128,6 +132,13 @@ public class Travel implements Parcelable {
     public void setSeats(int seats) {
         this.seats = seats;
     }
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
 
 
 
@@ -146,5 +157,6 @@ public class Travel implements Parcelable {
         dest.writeString(description);
         dest.writeString(userPublicated);
         dest.writeInt(seats);
+        dest.writeInt(id);
     }
 }
