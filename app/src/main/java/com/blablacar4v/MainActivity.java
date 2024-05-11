@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case 2:
+                        Intent intent2 = new Intent(MainActivity.this, PerfilActivity.class);
+                        intent2.putExtra("email", email);
+                        startActivity(intent2);
                         break;
                     case 3:
                         break;

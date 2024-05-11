@@ -13,6 +13,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class Management {
     public FirebaseFirestore db;
@@ -104,18 +105,38 @@ public class Management {
         return users;
     }
 
-    public int getMaxId(){
+    /*public int getMaxId(){
         final int[] max = {-1};
         getTravels().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Travel> travels = task.getResult();
                 for (Travel travel : travels) {
-                    if (travel.getId() >= max[0]) {
+                    if (travel.getId() > max[0]) {
                         max[0] = travel.getId();
                     }
                 }
             }
         });
-        return max[0];
+        return max[0]+1;
+    }*/
+
+    public CompletableFuture<Integer> getMaxId() {
+        CompletableFuture<Integer> future = new CompletableFuture<>();
+        getTravels().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Travel> travels = task.getResult();
+                int maxId = -1;
+                for (Travel travel : travels) {
+                    if (travel.getId() > maxId) {
+                        maxId = travel.getId();
+                    }
+                }
+                future.complete(maxId + 1);
+            } else {
+                future.completeExceptionally(task.getException());
+            }
+        });
+        return future;
     }
+
 }

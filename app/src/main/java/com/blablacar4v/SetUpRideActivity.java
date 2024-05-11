@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -72,9 +73,7 @@ public class SetUpRideActivity extends AppCompatActivity {
             startActivityForResult(intent, 1);
         });
         homeButton.setOnClickListener(v -> {
-            Intent intent = new Intent(SetUpRideActivity.this, MainActivity.class);
-            intent.putExtras(bundle);
-            startActivity(intent);
+            finish();
         });
         setUp();
 
@@ -85,7 +84,11 @@ public class SetUpRideActivity extends AppCompatActivity {
             Bundle bun = getIntent().getExtras();
 
             if (!buttonArrivalTime.getText().toString().isEmpty() || !buttonDepartureTime.getText().toString().isEmpty() || !buttonDepartureDate.getText().toString().isEmpty() || departurePlace.isEmpty() || !arrivalPlace.isEmpty() || !editSeats.getText().toString().isEmpty() || !editDescription.getText().toString().isEmpty()) {
-                int id = Program.management.getMaxId() == -1 ? 0 : Program.management.getMaxId() + 1;
+                Program.management.getMaxId().thenAccept(id -> {
+                    // Aquí puedes usar el ID obtenido
+                    System.out.println("El ID máximo es: " + id);
+
+
                 db.collection("travels").document(String.valueOf((id))).set(new Travel(
                         buttonDepartureTime.getText().toString(),
                         arrivalPlace,
@@ -97,6 +100,7 @@ public class SetUpRideActivity extends AppCompatActivity {
                         email,
                         id
                 ));
+                });
             }
         });
     }

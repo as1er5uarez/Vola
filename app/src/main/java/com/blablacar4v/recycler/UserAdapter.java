@@ -66,13 +66,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.RecyclerDataHo
         public RecyclerDataHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
-            textName = itemView.findViewById(R.id.textName);
             textDeparturePlace = itemView.findViewById(R.id.textDeparturePlace);
-            textDepartureDate = itemView.findViewById(R.id.textDateTravel);
             textDepartureHour = itemView.findViewById(R.id.textHourDeparture);
-            textSeats = itemView.findViewById(R.id.textSeats);
-            button = itemView.findViewById(R.id.buttonEntry);
             textArrivalPlace = itemView.findViewById(R.id.textArrivalPlace);
+            button = itemView.findViewById(R.id.button);
         }
 
         public void assignData(Travel travel, OnItemClickListener onItemClick) {
@@ -82,13 +79,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.RecyclerDataHo
             Program.management.getUser(travel.getUserPublicated()).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     List<User> user = task.getResult();
-                    textName.setText(user.get(0).getName());
+                    //textName.setText(user.get(0).getName());
                 }
             });
             textDeparturePlace.setText(travel.getDeparturePlace());
-            textDepartureDate.setText(travel.getDepartureDate());
+            //textDepartureDate.setText(travel.getDepartureDate());
             textDepartureHour.setText(travel.getDepartureHour());
-            textSeats.setText(travel.getSeats() + " asientos");
             textArrivalPlace.setText(travel.getArrivalPlace());
             imageView.setImageResource(R.drawable.user);
             itemView.setOnClickListener(v -> {
